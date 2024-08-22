@@ -16,12 +16,15 @@ Standard repo for managing packages
 # Bundler (webpack, babel, parcel)
 
 
-# Parcel
+# Parcel - Build's inside dist folder
  - HMR (Hot Module Replacement)
- - Create build of our code (Faster build using `parcel-cache`)
+ - Create build of our code - BUNDLING (Faster build using `parcel-cache`)
  - Hosts a local server (using command `npx parcel index.html`)
  - Uses File watching algorithm (written in C++)
- - 
+ - Image optimization (mostly costlier ops in browser/webapp)
+ - Minify & Compress file for prod build (using command `npx parcel build index.html`)
+ - Consistent Hashing, Code Splitting, Differential Bundling, Diagnostics of app, Handle Errors
+ - HTTPs (SSL)
 
 # Dependencies
 Dev Dependencies - Required in Development phase (using -D)
