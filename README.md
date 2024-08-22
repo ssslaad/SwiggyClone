@@ -16,6 +16,13 @@ Standard repo for managing packages
 # Bundler (webpack, babel, parcel)
 
 
+# Parcel
+ - HMR (Hot Module Replacement)
+ - Create build of our code (Faster build using `parcel-cache`)
+ - Hosts a local server (using command `npx parcel index.html`)
+ - Uses File watching algorithm (written in C++)
+ - 
+
 # Dependencies
 Dev Dependencies - Required in Development phase (using -D)
 Normal Dependencies - Used in prod / published apps.
