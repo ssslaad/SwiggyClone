@@ -8,7 +8,7 @@ CDNs, CORS, React, ReactDOM, Props, NPM, Bundler (webpack, babel, parcel), Trans
 3. ReactDOM - Specific to DOM which are used in webpages and DOM Manipulation.
 4. Every thing is a react element (object).
 5. Everything is rendered only inside the root element (which we decide). When render is called, React Element gets converted to HTML
-6. React Create Element -> needs 3 inputs -> html tag to be created, attributes, children of this element -> attributes and children together called as *PROPS*.
+6. React Create Element -> needs 3 inputs -> html tag to be created, attributes, children of this element -> attributes and children together called as **PROPS**.
 
 # NPM-JS It does not stand for Node Package Manager
 Standard repo for managing packages
@@ -38,3 +38,7 @@ use "npm_install" to get all the node_modules needed by our project
 # Inject React
 1. Using CDNs
 2. Using NPM to install react
+
+# scripts in package.json
+ - "dev_start": "parcel index.html" => This means if I use cmd - `npm run dev_start` (~ `npx parcel index.html`)
+ - `start` keyword reserved by npm. `npm run start` is equivalent to `npm start` (This runs a predefined command specified in the "start" property of a package's "scripts" object)
