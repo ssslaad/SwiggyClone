@@ -25,4 +25,6 @@ Transitive Dependencies - Dependencies which are indirectly needed (because our 
 collection of all the dependecies needed for our project and it's dependencies
 use "npm_install" to get all the node_modules needed by our project
 
-#
+# Inject React
+1. Using CDNs
+2. Using NPM to install react
