@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
 const rootElement = ReactDOM.createRoot(document.getElementById("root"));
 
 const parent = React.createElement(
