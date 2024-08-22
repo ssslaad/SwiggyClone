@@ -13,7 +13,7 @@ CDNs, CORS, React, ReactDOM, Props, NPM, Bundler (webpack, babel, parcel), Trans
 # NPM-JS It does not stand for Node Package Manager
 Standard repo for managing packages
 
-# Bundler
+# Bundler (webpack, babel, parcel)
 
 
 # Dependencies
@@ -23,3 +23,6 @@ Transitive Dependencies - Dependencies which are indirectly needed (because our 
 
 # node_modules
 collection of all the dependecies needed for our project and it's dependencies
+use "npm_install" to get all the node_modules needed by our project
+
+#
