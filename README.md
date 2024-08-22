@@ -1,6 +1,6 @@
 # NamasteReact
 # Topics
-CDNs, CORS, React, ReactDOM, Props, NPM
+CDNs, CORS, React, ReactDOM, Props, NPM, Bundler (webpack, babel, parcel), Transitive dependencies, package.json and package-lock.json file, node_modules
 
 # About
 1. React - Is a Library, not a framework. So we can use React in our existing apps whereever we need, no need to create an entire app from scratch using React.
@@ -12,3 +12,14 @@ CDNs, CORS, React, ReactDOM, Props, NPM
 
 # NPM-JS It does not stand for Node Package Manager
 Standard repo for managing packages
+
+# Bundler
+
+
+# Dependencies
+Dev Dependencies - Required in Development phase (using -D)
+Normal Dependencies - Used in prod / published apps.
+Transitive Dependencies - Dependencies which are indirectly needed (because our project has a dependency and that dependency have dependencies of it's own).
+
+# node_modules
+collection of all the dependecies needed for our project and it's dependencies
