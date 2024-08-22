@@ -2,8 +2,9 @@
   "name": "namastereact",
   "version": "1.0.0",
   "description": "CDNs, CORS, React, ReactDOM, Props",
-  "main": "App.js",
   "scripts": {
+    "start": "parcel index.html",
+    "prod_build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
