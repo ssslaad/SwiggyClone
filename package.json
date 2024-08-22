@@ -1,0 +1,22 @@
+{
+  "name": "namastereact",
+  "version": "1.0.0",
+  "description": "CDNs, CORS, React, ReactDOM, Props",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssslaad/NamasteReact.git"
+  },
+  "author": "Sudeep Laad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssslaad/NamasteReact/issues"
+  },
+  "homepage": "https://github.com/ssslaad/NamasteReact#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
