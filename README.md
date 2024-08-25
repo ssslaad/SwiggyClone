@@ -1,6 +1,7 @@
 # NamasteReact
+
 # Topics
-CDNs, CORS, React, ReactDOM, Props, NPM, Bundler (webpack, babel, parcel), Transitive dependencies, package.json and package-lock.json file, node_modules
+CDNs, CORS, React, ReactDOM, Props, NPM, Bundler (webpack, babel, parcel), Transitive dependencies, package.json and package-lock.json file, node_modules, jsx, React Components, Component Composition, Cross-site scripting attacks (XSS), 
 
 # About
 1. React - Is a Library, not a framework. So we can use React in our existing apps whereever we need, no need to create an entire app from scratch using React.
@@ -15,6 +16,9 @@ Standard repo for managing packages
 
 # Bundler (webpack, babel, parcel)
 
+# Babel - A JavaScript Compiler / Transpiler
+ - package used by parcel to transpile the jsx code to React code.
+ - 
 
 # Parcel - Build's inside dist folder
  - HMR (Hot Module Replacement)
@@ -31,9 +35,20 @@ Dev Dependencies - Required in Development phase (using -D)
 Normal Dependencies - Used in prod / published apps.
 Transitive Dependencies - Dependencies which are indirectly needed (because our project has a dependency and that dependency have dependencies of it's own).
 
+# Files and Folders
+
 # node_modules
 collection of all the dependecies needed for our project and it's dependencies
 use "npm_install" to get all the node_modules needed by our project
+
+# dist
+Build folder created and used by parcel
+
+# package.json
+Config file for our package/module/project. 
+
+# package-lock.json
+Config file containing exact versions of dependencies and transitive dependecies. Maintains integrity using HASH (to maintain consistency accross different platforms/machines).
 
 # Inject React
 1. Using CDNs
@@ -42,3 +57,165 @@ use "npm_install" to get all the node_modules needed by our project
 # scripts in package.json
  - "dev_start": "parcel index.html" => This means if I use cmd - `npm run dev_start` (~ `npx parcel index.html`)
  - `start` keyword reserved by npm. `npm run start` is equivalent to `npm start` (This runs a predefined command specified in the "start" property of a package's "scripts" object)
+
+# JSX
+ - Helps in creating React elements (as it gets very tidy to create DOM using React.createElement)
+ - Sanitizes data to prevent Cross-Site Scripting Attacks (XSS) 
+
+# React Components
+Name should start with Capital letter. (ex. FunctionNameLikeThis)
+
+Types of Components:
+ 1. Class based Components:
+    Created using JS Classes, old way, `ES6 classes that extends React.Component and must have a render method that returns React elements`
+
+ 2. Functional Components:
+    Created using JS Functions, new way, `Normal JS Function that accepts Props as an argument & returns JSX / React Elements`
+
+ 3. Pure Components
+
+ 4. Higher-Order Components (HOCs)
+
+ 5. Controlled and Uncontrolled Components
+
+# Component Composition
+Component composition in React is a powerful pattern that allows you to build complex UIs from simple, reusable components. It involves combining multiple components to create a more complex component. This approach promotes reusability, maintainability, and separation of concerns.
+
+## Key Concepts of Component Composition
+ - Children Prop:
+  The children prop allows you to pass components or elements as children to another component.
+
+```javascript
+// Example:
+function Container(props) {
+  return <div className="container">{props.children}</div>;
+}
+
+function App() {
+  return (
+    <Container>
+      <h1>Hello, world!</h1>
+      <p>This is a paragraph inside the container.</p>
+    </Container>
+  );
+}
+```
+ - Composition vs Inheritance:
+  React encourages composition over inheritance. Instead of extending components, you compose them by including them as children or props.
+
+```javascript
+// Example:
+function WelcomeDialog() {
+  return (
+    <Dialog>
+      <h1>Welcome</h1>
+      <p>Thank you for visiting our spacecraft!</p>
+    </Dialog>
+  );
+}
+
+function Dialog(props) {
+  return (
+    <div className="dialog">
+      {props.children}
+    </div>
+  );
+}
+```
+
+ - Specialization:
+  You can create specialized components by composing more generic ones.
+  
+```javascript
+// Example:
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
+
+function WelcomeDialog() {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        Welcome
+      </h1>
+      <p className="Dialog-message">
+        Thank you for visiting our spacecraft!
+      </p>
+    </FancyBorder>
+  );
+}
+```
+
+ - Containment:
+  Some components don’t know their children ahead of time. They use the children prop to pass arbitrary children elements.
+
+```javascript
+// Example:
+function SplitPane(props) {
+  return (
+    <div className="SplitPane">
+      <div className="SplitPane-left">
+        {props.left}
+      </div>
+      <div className="SplitPane-right">
+        {props.right}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <SplitPane
+      left={<Contacts />}
+      right={<Chat />}
+    />
+  );
+}
+```
+
+ - Higher-Order Components (HOCs):
+  HOCs are functions that take a component and return a new component with additional props or behavior.
+
+```javascript
+// Example:
+function withLogging(WrappedComponent) {
+  return class extends React.Component {
+    componentDidMount() {
+      console.log('Component mounted');
+    }
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  };
+}
+
+const EnhancedComponent = withLogging(MyComponent);
+```
+
+## Benefits of Component Composition
+ - Reusability: Components can be reused across different parts of the application.
+ - Maintainability: Smaller, focused components are easier to maintain and debug.
+ - Separation of Concerns: Each component handles a specific part of the UI, making the codebase more organized.
+
+# Cross-Site Scripting Attacks (XSS)
+Cross-Site Scripting (XSS) attacks are a type of security vulnerability where an attacker injects malicious scripts into otherwise benign and trusted websites. These attacks occur when a web application includes untrusted data in its output without proper validation or escaping. Here are the main types of XSS attacks:
+
+ - Reflected XSS: The malicious script is reflected off a web server, such as in an error message or search result. The script is executed immediately when the user interacts with the malicious link1.
+ - Stored XSS: The malicious script is stored on the target server, such as in a database, comment field, or forum post. The script is executed when the data is retrieved and displayed to users1.
+ - DOM-based XSS: The vulnerability exists in the client-side code rather than the server-side code. The script is executed as a result of modifying the DOM environment in the victim’s browser2.
+
+## How XSS Attacks Work
+ - Injection: The attacker injects malicious code into a web application.
+ - Execution: The malicious code is executed in the user’s browser.
+ - Impact: The attacker can steal sensitive information, hijack user sessions, deface websites, or perform other malicious activities3.
+
+## Prevention Tips
+ - Input Validation: Always validate and sanitize user inputs.
+ - Output Encoding: Encode data before rendering it in the browser.
+ - Content Security Policy (CSP): Implement CSP to restrict the sources from which scripts can be executed.
+ - Use Security Libraries: Utilize libraries and frameworks that automatically handle XSS vulnerabilities1.
