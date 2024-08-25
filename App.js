@@ -3,18 +3,33 @@ import ReactDOM from "react-dom/client";
 
 const rootElement = ReactDOM.createRoot(document.getElementById("root"));
 
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child1" }, [
-    React.createElement("h1", { id: "child1 h1" }, "Learning React 🚀"),
-    React.createElement("h2", { id: "child1 h2" }, "From Namaste React by Akshay Saini"),
-  ])
-);
-const heading = React.createElement(
-  "h1",
-  { id: "heading" },
-  "Hello World from React!"
+// const heading = React.createElement(
+//   "h1",
+//   { id: "heading" },
+//   "Hello World from React! 🚀🚀"
+// );
+
+const HeadingComponent = (props) => {
+  return <h1 className="heading">
+    {props.children}
+  </h1>
+}
+
+const myComponent = 
+<div id="component">
+  <HeadingComponent>
+    Hello World from React And JSX 🚀
+  </HeadingComponent>
+</div>;
+
+rootElement.render(myComponent);
+
+const MyComponent = () => (
+  <div id="component">
+    <HeadingComponent>
+      Hello World from React And JSX 🚀
+    </HeadingComponent>
+  </div>
 );
 
-rootElement.render(parent);
+rootElement.render(<MyComponent/>);
