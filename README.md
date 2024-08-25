@@ -19,7 +19,6 @@ Standard repo for managing packages
 # Babel - A JavaScript Compiler / Transpiler
  - package used by parcel to transpile the jsx code to React code.
  - 
-
 # Parcel - Build's inside dist folder
  - HMR (Hot Module Replacement)
  - Create build of our code - BUNDLING (Faster build using `parcel-cache`)
@@ -29,6 +28,12 @@ Standard repo for managing packages
  - Minify & Compress file for prod build (using command `npx parcel build index.html`)
  - Consistent Hashing, Code Splitting, Differential Bundling, Diagnostics of app, Handle Errors
  - HTTPs (SSL)
+## Folders Created by Parcel:
+### dist
+Build folder created and used by parcel
+### parcel-cache
+Cache the files / build and helps in building the dev project faster.
+
 
 # Dependencies
 Dev Dependencies - Required in Development phase (using -D)
@@ -36,23 +41,17 @@ Normal Dependencies - Used in prod / published apps.
 Transitive Dependencies - Dependencies which are indirectly needed (because our project has a dependency and that dependency have dependencies of it's own).
 
 # Files and Folders
+These are the files and folder present in React Project/Package:
 
-# node_modules
+## node_modules
 collection of all the dependecies needed for our project and it's dependencies
 use "npm_install" to get all the node_modules needed by our project
 
-# dist
-Build folder created and used by parcel
-
-# package.json
+## package.json
 Config file for our package/module/project. 
 
-# package-lock.json
+## package-lock.json
 Config file containing exact versions of dependencies and transitive dependecies. Maintains integrity using HASH (to maintain consistency accross different platforms/machines).
-
-# Inject React
-1. Using CDNs
-2. Using NPM to install react
 
 # scripts in package.json
  - "dev_start": "parcel index.html" => This means if I use cmd - `npm run dev_start` (~ `npx parcel index.html`)
@@ -61,6 +60,10 @@ Config file containing exact versions of dependencies and transitive dependecies
 # JSX
  - Helps in creating React elements (as it gets very tidy to create DOM using React.createElement)
  - Sanitizes data to prevent Cross-Site Scripting Attacks (XSS) 
+
+# Injecting React In Our Project
+1. Using CDNs
+2. Using NPM to install react
 
 # React Components
 Name should start with Capital letter. (ex. FunctionNameLikeThis)
@@ -125,7 +128,7 @@ function Dialog(props) {
 
  - Specialization:
   You can create specialized components by composing more generic ones.
-  
+
 ```javascript
 // Example:
 function FancyBorder(props) {
@@ -206,16 +209,16 @@ const EnhancedComponent = withLogging(MyComponent);
 Cross-Site Scripting (XSS) attacks are a type of security vulnerability where an attacker injects malicious scripts into otherwise benign and trusted websites. These attacks occur when a web application includes untrusted data in its output without proper validation or escaping. Here are the main types of XSS attacks:
 
  - Reflected XSS: The malicious script is reflected off a web server, such as in an error message or search result. The script is executed immediately when the user interacts with the malicious link1.
- - Stored XSS: The malicious script is stored on the target server, such as in a database, comment field, or forum post. The script is executed when the data is retrieved and displayed to users1.
- - DOM-based XSS: The vulnerability exists in the client-side code rather than the server-side code. The script is executed as a result of modifying the DOM environment in the victim’s browser2.
+ - Stored XSS: The malicious script is stored on the target server, such as in a database, comment field, or forum post. The script is executed when the data is retrieved and displayed to users.
+ - DOM-based XSS: The vulnerability exists in the client-side code rather than the server-side code. The script is executed as a result of modifying the DOM environment in the victim’s browser.
 
 ## How XSS Attacks Work
  - Injection: The attacker injects malicious code into a web application.
  - Execution: The malicious code is executed in the user’s browser.
- - Impact: The attacker can steal sensitive information, hijack user sessions, deface websites, or perform other malicious activities3.
+ - Impact: The attacker can steal sensitive information, hijack user sessions, deface websites, or perform other malicious activities.
 
 ## Prevention Tips
  - Input Validation: Always validate and sanitize user inputs.
  - Output Encoding: Encode data before rendering it in the browser.
  - Content Security Policy (CSP): Implement CSP to restrict the sources from which scripts can be executed.
- - Use Security Libraries: Utilize libraries and frameworks that automatically handle XSS vulnerabilities1.
+ - Use Security Libraries: Utilize libraries and frameworks that automatically handle XSS vulnerabilities.
