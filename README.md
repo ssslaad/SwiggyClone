@@ -206,23 +206,7 @@ const EnhancedComponent = withLogging(MyComponent);
  - Maintainability: Smaller, focused components are easier to maintain and debug.
  - Separation of Concerns: Each component handles a specific part of the UI, making the codebase more organized.
 
-# Cross-Site Scripting Attacks (XSS)
-Cross-Site Scripting (XSS) attacks are a type of security vulnerability where an attacker injects malicious scripts into otherwise benign and trusted websites. These attacks occur when a web application includes untrusted data in its output without proper validation or escaping. Here are the main types of XSS attacks:
 
- - Reflected XSS: The malicious script is reflected off a web server, such as in an error message or search result. The script is executed immediately when the user interacts with the malicious link1.
- - Stored XSS: The malicious script is stored on the target server, such as in a database, comment field, or forum post. The script is executed when the data is retrieved and displayed to users.
- - DOM-based XSS: The vulnerability exists in the client-side code rather than the server-side code. The script is executed as a result of modifying the DOM environment in the victim’s browser.
-
-## How XSS Attacks Work
- - Injection: The attacker injects malicious code into a web application.
- - Execution: The malicious code is executed in the user’s browser.
- - Impact: The attacker can steal sensitive information, hijack user sessions, deface websites, or perform other malicious activities.
-
-## Prevention Tips
- - Input Validation: Always validate and sanitize user inputs.
- - Output Encoding: Encode data before rendering it in the browser.
- - Content Security Policy (CSP): Implement CSP to restrict the sources from which scripts can be executed.
- - Use Security Libraries: Utilize libraries and frameworks that automatically handle XSS vulnerabilities.
 
 # Conditional Rendering
   Sometimes, we need to render our component based on condition. In React, we can conditionally render JSX using JavaScript syntax like if statements, &&, and ? : operators.
@@ -256,3 +240,50 @@ Here we get warning on console:
 > Each child in a list should have a unique "key" prop.
 > Check the render method of `List`. See https://react.dev/link/warning-keys for more information.
 > Warning: Each child in a list should have a unique “key” prop.
+
+# Types of exports
+Whenever we need to use our component in any other component, we need to export our component so that other components can use it.
+
+## Default Export
+Only 1 default export is allowed
+```javascript
+// export
+const MyComponent = () => {}
+export default MyComponent;
+
+// import
+import MyDefaultComponent from "./MyDefaultExport";
+```
+## Named Export
+multiple named exports per file are allowed
+```javascript
+// export
+export const MY_VARIABLE = "hi";
+export const MyComponent = () => {}
+
+// import
+import { MyComponent } from "./MyComponent";
+```
+
+
+
+
+# Miscellenous
+
+## Cross-Site Scripting Attacks (XSS)
+Cross-Site Scripting (XSS) attacks are a type of security vulnerability where an attacker injects malicious scripts into otherwise benign and trusted websites. These attacks occur when a web application includes untrusted data in its output without proper validation or escaping. Here are the main types of XSS attacks:
+
+ - Reflected XSS: The malicious script is reflected off a web server, such as in an error message or search result. The script is executed immediately when the user interacts with the malicious link1.
+ - Stored XSS: The malicious script is stored on the target server, such as in a database, comment field, or forum post. The script is executed when the data is retrieved and displayed to users.
+ - DOM-based XSS: The vulnerability exists in the client-side code rather than the server-side code. The script is executed as a result of modifying the DOM environment in the victim’s browser.
+
+### How XSS Attacks Work
+ - Injection: The attacker injects malicious code into a web application.
+ - Execution: The malicious code is executed in the user’s browser.
+ - Impact: The attacker can steal sensitive information, hijack user sessions, deface websites, or perform other malicious activities.
+
+### Prevention Tips
+ - Input Validation: Always validate and sanitize user inputs.
+ - Output Encoding: Encode data before rendering it in the browser.
+ - Content Security Policy (CSP): Implement CSP to restrict the sources from which scripts can be executed.
+ - Use Security Libraries: Utilize libraries and frameworks that automatically handle XSS vulnerabilities.

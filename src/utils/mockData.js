@@ -1,8 +1,4 @@
-import React from "react";
-import RestaurantCard from "../RestaurantCard/RestaurantCard";
-import './body.css';
-
-const RestaurantsData = [
+export const RestaurantsData = [
     {
         "info": {
             "id": "14781",
@@ -838,31 +834,3 @@ const RestaurantsData = [
         "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
     }
 ];
-
-export default function Body() {
-
-    return (
-        <div className="body">
-            <div className="restaurants">
-                <h1>Restaurants</h1>
-                <div className="res-container">
-                    {RestaurantsData.map((restaurant) => {
-                        return <RestaurantCard
-                            key={restaurant.info.id}
-                            restaurantData={restaurant}
-                        />
-                    }
-                    )}
-                </div>
-            </div>
-
-            <div className="cuisines">
-                <h1>Cuisines : What's on your mind ??</h1>
-                <div className="cuisines-container">
-                    
-                </div>
-            </div>
-        </div>
-    )
-}
-

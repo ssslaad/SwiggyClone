@@ -3,6 +3,8 @@ import './cuisineCard.css';
 
 export default function CuisineCard() {
     return (
-        <p>hello</p>
+        <div>
+            <h1>hello</h1>
+        </div>
     )
 }
