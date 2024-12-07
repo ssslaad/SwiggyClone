@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Header from "./Components/Header/HeaderComponent";
+import Body from "./Components/Body/BodyComponent";
 
 const rootElement = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -9,27 +11,12 @@ const rootElement = ReactDOM.createRoot(document.getElementById("root"));
 //   "Hello World from React! 🚀🚀"
 // );
 
-const HeadingComponent = (props) => {
-  return <h1 className="heading">
-    {props.children}
-  </h1>
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header></Header>
+      <Body/>
+    </div>
+  )
 }
-
-const myComponent = 
-<div id="component">
-  <HeadingComponent>
-    Hello World from React And JSX 🚀
-  </HeadingComponent>
-</div>;
-
-rootElement.render(myComponent);
-
-const MyComponent = () => (
-  <div id="component">
-    <HeadingComponent>
-      Hello World from React And JSX 🚀
-    </HeadingComponent>
-  </div>
-);
-
-rootElement.render(<MyComponent/>);
+rootElement.render(<AppLayout/>);
