@@ -1,5 +1,5 @@
 import React from "react";
-import './cuisineCardComponent.css';
+import './cuisineCard.css';
 
 export default function CuisineCard() {
     return (

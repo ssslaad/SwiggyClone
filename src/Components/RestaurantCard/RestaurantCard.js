@@ -1,22 +1,11 @@
 import React from "react";
-import './restaurantCardComponent.css';
+import './restaurantCard.css';
 
 export default function RestaurantCard(props) {
     const {restaurantData} = props;
     const {name, avgRating, totalRatingsString,costForTwo, areaName, cuisines = [], cloudinaryImageId} = restaurantData?.info || {};
     const {slaString} = restaurantData?.info?.sla || {};
     
-    /*
-    name={restaurant.info.name}
-    rating={`${restaurant.info.avgRating} (${restaurant.info.totalRatingsString})`}
-    costForTwo={restaurant.info.costForTwo}
-    location={restaurant.info.areaName}
-    cuisines={restaurant.info.cuisines.join(", ")}
-    time={restaurant.info.sla.slaString}
-    img={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restaurant.info.cloudinaryImageId}`}
-    */
-
-
     return (
         <div className="res-card">
             <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`} alt="Food photo" className="res-thumbnail"></img>

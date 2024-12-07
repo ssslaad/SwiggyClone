@@ -1,6 +1,6 @@
 import React from "react";
-import RestaurantCard from "../RestaurantCard/RestaurantCardComponent";
-import './bodyComponent.css';
+import RestaurantCard from "../RestaurantCard/RestaurantCard";
+import './body.css';
 
 const RestaurantsData = [
     {
