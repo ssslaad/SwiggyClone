@@ -1,13 +1,10 @@
 .res-card {
-    min-width: 270px;
-    height: 300px;
-    width: 270px;
+    width: 300px;
     background-color: #923737;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     margin: 10px;
     border: 2px solid transparent;
-    /* Initially, the border is transparent */
     transition: border 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -15,6 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .res-card:hover {
@@ -22,9 +20,9 @@
     cursor: pointer;
 }
 
-.food-image {
-    width: 100%;
-    height: auto;
+.res-thumbnail {
+    width: 250px;
+    height: 150px;
     object-fit: cover;
     border-radius: 3px;
     margin-bottom: 10px;
@@ -37,33 +35,44 @@
     color: #555;
 }
 
-.res-name {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #333;
+.res-details {
+    width: 250px;
+    overflow: hidden;
+    display: block;
 }
 
-.res-cuisine {
-    margin: 5px 0;
-}
-
-.res-rating-time-cost {
-    display: flex;
-    /* Arrange the items horizontally */
-    gap: 5px;
-    /* Add space between each list item */
-    list-style-type: none;
-    /* Remove the default list bullet points */
-    padding: 0;
-    /* Remove any default padding from the <ul> */
-    margin: 0;
+.res-name,
+.res-location,
+.res-rating,
+.res-time,
+.res-cost-for-2,
+.res-cuisines {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin: 0 0 2px 0;
 }
 
 .res-rating-time-cost li {
     display: flex;
-    /* Optional: Ensures items inside <li> are aligned correctly */
-    align-items: center;
+    align-items: left;
 }
+
+.res-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.res-rating-time-cost {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+}
+
 
 /* Responsive design for smaller screens */
 @media (max-width: 600px) {
@@ -72,7 +81,7 @@
         align-items: flex-start;
     }
 
-    .food-image {
+    .res-thumbnail {
         width: 80px;
         height: 80px;
         margin-bottom: 15px;

@@ -1,7 +1,8 @@
-# NamasteReact
+# React
+Ref: https://react.dev/learn
 
 # Topics
-CDNs, CORS, React, ReactDOM, Props, NPM, Bundler (webpack, babel, parcel), Transitive dependencies, package.json and package-lock.json file, node_modules, jsx, React Components, Component Composition, Cross-site scripting attacks (XSS), 
+CDNs, CORS, React, ReactDOM, Props, NPM, Bundler (webpack, babel, parcel), Transitive dependencies, package.json and package-lock.json file, node_modules, jsx, React Components, Component Composition, Cross-site scripting attacks (XSS), Conditional Rendering, Rendering lists
 
 # About
 1. React - Is a Library, not a framework. So we can use React in our existing apps whereever we need, no need to create an entire app from scratch using React.
@@ -222,3 +223,36 @@ Cross-Site Scripting (XSS) attacks are a type of security vulnerability where an
  - Output Encoding: Encode data before rendering it in the browser.
  - Content Security Policy (CSP): Implement CSP to restrict the sources from which scripts can be executed.
  - Use Security Libraries: Utilize libraries and frameworks that automatically handle XSS vulnerabilities.
+
+# Conditional Rendering
+  Sometimes, we need to render our component based on condition. In React, we can conditionally render JSX using JavaScript syntax like if statements, &&, and ? : operators.
+  - In JSX, {cond ? <A /> : <B />} means “if cond, render <A />, otherwise <B />”.
+  - In JSX, {cond && <A />} means “if cond, render <A />, otherwise nothing”.
+  - You can return a JSX expression conditionally with an if statement.
+
+  Reference: https://react.dev/learn/conditional-rendering
+
+# Rendering List
+Render multiple similar components from a collection of data using array's filter() and map() methods.
+
+```javascript
+const people = [
+  'Creola Katherine Johnson: mathematician',
+  'Mario José Molina-Pasquel Henríquez: chemist',
+  'Mohammad Abdus Salam: physicist',
+  'Percy Lavon Julian: chemist',
+  'Subrahmanyan Chandrasekhar: astrophysicist'
+];
+
+export default function List() {
+  const listItems = people.map(person =>
+    <li>{person}</li>
+  );
+  return <ul>{listItems}</ul>;
+}
+```
+Here we get warning on console:
+
+> Each child in a list should have a unique "key" prop.
+> Check the render method of `List`. See https://react.dev/link/warning-keys for more information.
+> Warning: Each child in a list should have a unique “key” prop.
