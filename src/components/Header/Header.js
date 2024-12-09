@@ -10,7 +10,7 @@ export default function Header() {
                 <ul className="nav-items">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About Us</a></li>
-                
+                    <li><a href="#">Location</a></li>
                     <li className="search-bar">
                         <input type="text" placeholder="Search..."/>
                         <button type="submit">Search</button>

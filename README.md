@@ -265,6 +265,78 @@ export const MyComponent = () => {}
 import { MyComponent } from "./MyComponent";
 ```
 
+# Render and Commit
+1. Triggering a render (delivering the guest’s order to the kitchen)
+2. Rendering the component (preparing the order in the kitchen)
+3. Committing to the DOM (placing the order on the table)
+
+## Step 1: Triggering a render
+There are two reasons for a component to render:
+1. It’s the component’s initial render.
+  - It’s done by calling createRoot with the target DOM node, and then calling its render method with your component.
+2. The component’s (or one of its ancestors’) state has been updated.
+  - Trigger further renders by updating its state with the set function. Updating your component’s state automatically queues a render.
+
+## Step 2: Rendering a Component
+“Rendering” is React calling your components.
+1. On initial render, React will call the root component.
+2. For subsequent renders, React will call the function component whose state update triggered the render.
+
+## Step 3: React commits changes to the DOM
+After rendering (calling) your components, React will modify the DOM.
+- For the initial render, React will use the appendChild() DOM API to put all the DOM nodes it has created on screen.
+- For re-renders, React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+
+# Hooks
+Javascript functions that let you use different React features from your components.
+Hooks are special functions that are only available while React is rendering. They let you “hook into” different React features.
+Hooks—functions starting with use
+  - can only be called at the top level of your components or your own Hooks.
+  - can’t be called inside conditions, loops, or other nested functions.
+
+# useState hook
+References:
+https://react.dev/learn/state-a-components-memory
+https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e
+
+
+Problems with local variables:
+- Local variables don’t persist between renders.
+- Changes to local variables won’t trigger renders.
+
+To update a component with new data, two things need to happen:
+
+1. Retain the data between renders.
+2. Trigger React to render the component with new data (re-rendering).
+
+The `useState` Hook provides those two things:
+
+- A state variable to retain the data between renders.
+- A state setter function to update the variable and trigger React to render the component again.
+
+```javascript
+let index = 0; //local variable
+const [index, setIndex] = useState(0); //state variable
+
+```
+
+`State is isolated and private`
+State is local to a component instance on the screen. In other words, if you render the same component twice, each copy will have completely isolated state! Changing one of them will not affect the other.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
