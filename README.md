@@ -324,8 +324,13 @@ const [index, setIndex] = useState(0); //state variable
 State is local to a component instance on the screen. In other words, if you render the same component twice, each copy will have completely isolated state! Changing one of them will not affect the other.
 
 
+# Reconciliation, diif algorithm, react fibre, virtual DOM
 
+References: 
+- https://legacy.reactjs.org/docs/reconciliation.html
 
+# Shimmer UI and Loading Indicator
+ 
 
 
 

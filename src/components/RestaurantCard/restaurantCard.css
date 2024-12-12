@@ -1,89 +1,174 @@
+/* General card styling */
+
 .res-card {
     width: 300px;
-    background-color: #923737;
+    background-color: #fff;
     border-radius: 10px;
-    padding: 20px;
+    padding: 16px;
     margin: 10px;
     border: 2px solid transparent;
-    transition: border 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    flex-shrink: 0; /* Prevent shrinking */
+    height: auto; /* Prevent height collapse */
+    min-height: 300px; /* Ensure cards have a minimum height */
+    font-family: "Ubuntu", sans-serif;
 }
 
+/* Hover effect for the card */
 .res-card:hover {
     border-color: #a66d22;
     cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Thumbnail styling */
 .res-thumbnail {
     width: 250px;
     height: 150px;
+    max-width: 250px;
+    max-height: 150px;
     object-fit: cover;
     border-radius: 3px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
+/* Details section */
 .res-details {
-    align-self: flex-start;
+    width: 100%;
     text-align: left;
-    font-size: 1em;
+    font-size: 1rem;
     color: #555;
 }
 
-.res-details {
-    width: 250px;
-    overflow: hidden;
-    display: block;
-}
-
-.res-name,
-.res-location,
-.res-rating,
-.res-time,
-.res-cost-for-2,
-.res-cuisines {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-    margin: 5px 0 0 0;
-}
-
-.res-rating-time-cost li {
-    display: flex;
-    align-items: left;
-}
-
 .res-name {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     font-weight: bold;
     color: #333;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
+.res-location {
+    font-size: 0.875rem; /* 14px */
+    color: #777;
+    margin-bottom: 5px;
+}
+
+/* Rating, time, cost info */
 .res-rating-time-cost {
     display: flex;
-    list-style-type: none;
+    flex-direction: column;
+    list-style: none;
     padding: 0;
     margin: 0;
-    flex-direction: column;
+    gap: 3px;
 }
 
+.res-rating,
+.res-time,
+.res-cost-for-2 {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+}
 
-/* Responsive design for smaller screens */
+/* Cuisines section */
+.res-cuisines {
+    font-size: 0.875rem;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top:5px;
+}
+
+/* Flex layout for responsive design */
 @media (max-width: 600px) {
     .res-card {
+        width: 100%; /* Ensure it takes the full width */
         flex-direction: column;
         align-items: flex-start;
     }
 
     .res-thumbnail {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 15px;
+        max-width: 100px;
+        max-height: 100px;
+        margin-bottom: 12px;
+    }
+
+    .res-details {
+        width: 100%;
+    }
+
+    .res-name {
+        font-size: 1rem; /* 16px */
+    }
+}
+
+
+/* Shimmer container for loading state */
+.res-card.loading {
+    background-color: #f3f3f3;
+    border: 2px solid #ddd;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Shimmer effect for the image placeholder */
+.res-thumbnail.loading-thumbnail {
+    background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+.res-card.loading .res-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.res-card.loading .res-name,
+.res-card.loading .res-location,
+.res-card.loading .res-rating-time-cost,
+.res-card.loading .res-cuisines {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 4px;
+    animation: shimmer 1.5s infinite linear;
+}
+
+.res-card.loading .res-name {
+    width: 80%;
+}
+
+.res-card.loading .res-location {
+    width: 60%;
+}
+
+.res-card.loading .res-rating-time-cost {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.res-card.loading .res-cuisines {
+    width: 70%;
+    height: 16px;
+}
+
+/* Keyframes for shimmer animation */
+@keyframes shimmer {
+    100% {
+        background-position: -200% 0;
+    }
+    0% {
+        background-position: 200% 0;
     }
 }
