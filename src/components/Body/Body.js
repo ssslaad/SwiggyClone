@@ -4,18 +4,31 @@ import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import CuisineCard from "../CuisineCard/CuisineCard";
 import ShimmerRestaurantCard from "../RestaurantCard/ShimmerRestaurantCard";
 import { SWIGGY_GET_DATA_API } from "../../utils/constants";
+import CuisineCard from "../CuisineCard/CuisineCard";
+import ShimmerCuisineCard from "../CuisineCard/ShimmerCuisineCard";
+import { RestaurantsMockData, CuisinesMockData } from "../../utils/mockData";
 
 export default function Body() {
 
     // Initialize state with all restaurants data
+    const [popularRestaurants, setPopularRestaurants] = useState([]);
     const [restaurants, setRestaurants] = useState([]);
+    const [allRestaurants, setAllRestaurants] = useState([]);
+    const [cuisines, setCuisines] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [topRatedFilterApplied, setTopRatedFilterApplied] = useState(false);
 
     const fetchData = async (api) => {
         const fetchedData = await fetch(api);
         const fetchedJson = await fetchedData.json();
-        const restaurantCards = fetchedJson?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        setRestaurants(restaurantCards);
+        const restaurantGridList = fetchedJson?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const popularRestaurantsList = fetchedJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const cuisineCards = fetchedJson?.data?.cards[0]?.card?.card?.imageGridCards?.info;
+
+        setRestaurants(restaurantGridList);
+        setPopularRestaurants(popularRestaurantsList);
+        setAllRestaurants(restaurantGridList);
+        setCuisines(cuisineCards);
         setDataLoaded(true);
     }
 
@@ -26,23 +39,25 @@ export default function Body() {
 
     // Filter the restaurants based on the top-rated filter
     const filterTopRated = () => {
-        const filtered = restaurants.filter(restaurant => restaurant.info.avgRating > 4.3);
-        setRestaurants(filtered); // Update the state with the filtered data
+        if (topRatedFilterApplied) {
+            setRestaurants(allRestaurants);
+            setTopRatedFilterApplied(false);
+        } else {
+            const filtered = restaurants.filter(restaurant => restaurant.info.avgRating > 4.3);
+            setRestaurants(filtered); // Update the state with the filtered data
+            setTopRatedFilterApplied(true);
+        }
     };
 
     if (!dataLoaded) {
         return (
             <div className={styles.body}>
-                
-                <div className={styles.filters}>
-                    <button onClick={filterTopRated}>Top Rated</button>
-                </div>
 
                 <div className={styles.restaurants}>
-                    <h1>Restaurants</h1>
-                    <div className={styles.resContainer}>
+                    <h1>Popular Restaurants In Pune</h1>
+                    <div className={styles.popularResContainer}>
                         {/* Show multiple shimmer restaurant cards */}
-                        {[...Array(4)].map((_, index) => (
+                        {[...Array(5)].map((_, index) => (
                             <ShimmerRestaurantCard key={index} />
                         ))}
                     </div>
@@ -50,23 +65,24 @@ export default function Body() {
 
                 <div className={styles.cuisines}>
                     <h1>Cuisines: What's on your mind ??</h1>
-                    <div className={styles.cuisinesContainer}>
-                        <CuisineCard />
-                        <ShimmerRestaurantCard />
+                    <div className={styles.cuisineContainer}>
+                        {/* Show multiple shimmer restaurant cards */}
+                        {[...Array(10)].map((_, index) => (
+                            <ShimmerCuisineCard key={index} />
+                        ))}
                     </div>
                 </div>
+
             </div>
         );
     }
     return (
         <div className={styles.body}>
-            <div className={styles.filters}>
-                <button onClick={filterTopRated}>Top Rated</button>
-            </div>
+            
             <div className={styles.restaurants}>
-                <h1>Restaurants</h1>
-                <div className={styles.resContainer}>
-                    {restaurants.map((restaurant) => {
+                <h1>Popular Restaurants In Pune</h1>
+                <div className={styles.popularResContainer}>
+                    {popularRestaurants.map((restaurant) => {
                         return <RestaurantCard
                             key={restaurant.info.id}
                             restaurantData={restaurant}
@@ -78,10 +94,24 @@ export default function Body() {
 
             <div className={styles.cuisines}>
                 <h1>Cuisines : What's on your mind ??</h1>
-                <div className={styles.cuisinesContainer}>
-                    <CuisineCard />
+                <div className={styles.cuisineContainer}>
+                    {cuisines.map((cuisine) => {
+                        return <CuisineCard
+                            key={cuisine.id}
+                            cuisineData={cuisine}
+                        />
+                    }
+                    )}
                 </div>
             </div>
+
+            <hr className="separator"/>
+            
+            <div className={styles.filters}>
+                <button disabled={true} className={`toggledTopRatedBtn ${topRatedFilterApplied ? 'toggledOn' : 'toggledOff'}`} onClick={filterTopRated}>Top Rated</button>
+            </div>
+
+            
         </div>
     );
 }
