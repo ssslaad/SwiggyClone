@@ -4,11 +4,11 @@
     width: 300px;
     background-color: #fff;
     border-radius: 10px;
-    padding: 16px;
-    margin: 10px;
+    padding:10px;
+    padding-top:0;
+    margin:16px 18px;
     border: 2px solid transparent;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -21,19 +21,17 @@
 
 /* Hover effect for the card */
 .res-card:hover {
-    border-color: #a66d22;
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);*/
+    box-shadow: 0 6px 12px #f79e38;
 }
 
 /* Thumbnail styling */
 .res-thumbnail {
-    width: 250px;
-    height: 150px;
-    max-width: 250px;
-    max-height: 150px;
+    width: 295px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 3px;
+    border-radius: 10px;
     margin-bottom: 16px;
 }
 
@@ -41,8 +39,11 @@
 .res-details {
     width: 100%;
     text-align: left;
-    font-size: 1rem;
+    font-size: 16px;
     color: #555;
+    line-height: 20px;
+    color:rgba(2, 6, 12, 0.6);
+    font-weight: 800;
 }
 
 .res-name {

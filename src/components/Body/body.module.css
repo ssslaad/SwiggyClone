@@ -1,10 +1,14 @@
 .body {
-  font-family: Gilroy_Bold, Arial, sans-serif;
-  margin: 5px auto;
+  margin: 0px auto;
   padding: 5px;
-  background-color: #f8f8f8;
   width: 85%;
   align-self: center;
+  background-color: white;
+}
+
+h1{
+  font-weight: 800;
+  font-size: 24px;
 }
 
 .cuisineContainer::-webkit-scrollbar {
@@ -27,7 +31,7 @@
 
 .cuisines,
 .restaurants {
-  margin: 5px;
+  margin: 10px;
   padding: 5px;
 }
 

@@ -1,6 +1,6 @@
-:root {
-    --backgroundColor: #f1f1f1;
-    --contrast: #f79e38;
+:root{
+    --backgroundColor:#f79e38;
+    --contrast:#f1f1f1;
 }
 
 * {
@@ -14,7 +14,6 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Navbar Styles */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -23,53 +22,43 @@ body {
     padding: 10px 20px;
 }
 
-.navbar .logo {
+.nav-items {
+    list-style: none;
     display: flex;
     align-items: center;
-}
-
-.navbar img {
-    width: 50px; /* You can adjust this for responsiveness */
-    height: auto;
-}
-
-.nav-items {
-    display: flex;
-    list-style: none;
-    gap: 15px; /* Using gap for consistent spacing between items */
+    background-color: var(--backgroundColor);
 }
 
 .nav-items li {
-    background-color: var(--backgroundColor); /* Apply background color to each li */
-    margin: 0;
+    padding: 0px 15px;
+    margin: 0 5px;
+    background-color: var(--backgroundColor);
 }
 
 .nav-items a {
     text-decoration: none;
     color: var(--contrast);
     font-size: 18px;
-    padding: 10px;
-    display: block; /* Make the anchor tag a block-level element to fill the li */
     border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    padding:10px;
+    transition: background-color .3s;
 }
 
 .nav-items a:hover {
     background-color: var(--contrast);
-    color: var(--backgroundColor);
+    color:var(--backgroundColor);
 }
 
-/* Search Bar Styles */
 .search-bar {
     display: flex;
     align-items: center;
-    gap: 8px; /* Space between the input field and button */
 }
 
 .search-bar input {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    margin-right: 10px;
 }
 
 .search-bar button {
@@ -79,15 +68,12 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .search-bar button:hover {
     background-color: #444;
 }
 
-/* Aligning .search-bar and .nav-items on the same line */
-.navbar .nav-items, .navbar .search-bar {
-    display: flex;
-    align-items: center;
+img{
+    width: 50px;
 }

@@ -1,4 +1,10 @@
-.heading {
-  color: rgb(59, 46, 239);
+*{
+  font-family: "Ubuntu", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+body{
+  background-color: white;
 }
   
