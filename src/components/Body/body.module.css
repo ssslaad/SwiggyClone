@@ -59,6 +59,7 @@ h1{
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 3px 6px #f4c998;
 }
 
 .filters button .loading {
