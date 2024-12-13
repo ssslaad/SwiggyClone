@@ -16,7 +16,7 @@ h1{
 }
 
 .cuisineContainer::-webkit-scrollbar-thumb {
-  background-color: #888;
+  background-color: #f4c998;
   border-radius: 10px;
 }
 
@@ -25,7 +25,7 @@ h1{
 }
 
 .popularResContainer::-webkit-scrollbar-thumb {
-  background-color: #888;
+  background-color: #f4c998; 
   border-radius: 10px;
 }
 
@@ -86,7 +86,31 @@ h1{
   background-color: #444;
 }
 
-hr .separator{
-  margin: 32px auto;
-  width: 70%;
+hr{
+  margin-top: 20px; /* Adds space above the separator */
+    margin-bottom: 20px; /* Optional: Adds space below the separator */
+    width: 100%; /* Makes the separator take up full width of the parent container */
+    border: none; /* You can customize the appearance of the separator if needed */
+    border-top: 2px solid #ccc;
 }
+
+/* Search Bar Styles */
+.searchBar {
+  margin: 20px; /* Ensures the bar is centered */
+  display: flex;
+  justify-content: center; /* Center the content */
+  align-items: center;
+  gap: 8px;
+  width: 100%; /* Full width to adjust with screen size */
+  max-width: 600px; /* Max width of the search bar */
+}
+
+.searchBar input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  flex: 1; /* Ensures input field grows and fills available space */
+  box-shadow: 0 3px 6px #f4c998;
+}
+
+

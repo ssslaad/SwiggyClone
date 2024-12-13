@@ -1,7 +1,4 @@
-:root {
-    --backgroundColor: #f1f1f1;
-    --contrast: #f79e38;
-}
+
 
 * {
     margin: 0;
@@ -47,6 +44,7 @@ body {
 .nav-items a {
     text-decoration: none;
     color: var(--contrast);
+    font-weight: 400;
     font-size: 18px;
     padding: 10px;
     display: block; /* Make the anchor tag a block-level element to fill the li */
@@ -57,33 +55,6 @@ body {
 .nav-items a:hover {
     background-color: var(--contrast);
     color: var(--backgroundColor);
-}
-
-/* Search Bar Styles */
-.search-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Space between the input field and button */
-}
-
-.search-bar input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.search-bar button {
-    padding: 8px 12px;
-    background-color: #555;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.search-bar button:hover {
-    background-color: #444;
 }
 
 /* Aligning .search-bar and .nav-items on the same line */

@@ -12,11 +12,26 @@ export default function Body() {
 
     // Initialize state with all restaurants data
     const [popularRestaurants, setPopularRestaurants] = useState([]);
+    const [allPopularRestaurants, setAllPopularRestaurants] = useState([]);
     const [restaurants, setRestaurants] = useState([]);
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [cuisines, setCuisines] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
     const [topRatedFilterApplied, setTopRatedFilterApplied] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // Handle input change
+    const handleInputChange = (event) => {
+        
+        const query = event.target.value.toLowerCase();
+        setSearchQuery(query);
+        if (searchQuery === undefined || searchQuery === '') {
+            setPopularRestaurants(allPopularRestaurants);
+        } else {
+            const searchedFromPopularRestaurants = allPopularRestaurants.filter(restaurant => restaurant.info.name.toLowerCase().includes(query));
+            setPopularRestaurants(searchedFromPopularRestaurants);
+        }
+    };
 
     const fetchData = async (api) => {
         const fetchedData = await fetch(api);
@@ -27,6 +42,7 @@ export default function Body() {
 
         setRestaurants(restaurantGridList);
         setPopularRestaurants(popularRestaurantsList);
+        setAllPopularRestaurants(popularRestaurantsList);
         setAllRestaurants(restaurantGridList);
         setCuisines(cuisineCards);
         setDataLoaded(true);
@@ -49,20 +65,13 @@ export default function Body() {
         }
     };
 
+    const searchFromPopularRestaurants = () => {
+
+    };
+
     if (!dataLoaded) {
         return (
             <div className={styles.body}>
-
-                <div className={styles.restaurants}>
-                    <h1>Popular Restaurants In Pune</h1>
-                    <div className={styles.popularResContainer}>
-                        {/* Show multiple shimmer restaurant cards */}
-                        {[...Array(5)].map((_, index) => (
-                            <ShimmerRestaurantCard key={index} />
-                        ))}
-                    </div>
-                </div>
-
                 <div className={styles.cuisines}>
                     <h1>Cuisines: What's on your mind ??</h1>
                     <div className={styles.cuisineContainer}>
@@ -73,12 +82,26 @@ export default function Body() {
                     </div>
                 </div>
 
+                <div className={styles.restaurants}>
+                    <h1>Popular Restaurants In Pune</h1>
+                    <div className={styles.popularResContainer}>
+                        {/* Show multiple shimmer restaurant cards */}
+                        {[...Array(5)].map((_, index) => (
+                            <ShimmerRestaurantCard key={index} />
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }
+
     return (
         <div className={styles.body}>
-            
+
+            <div className={styles.searchBar}>
+                <input type="text" placeholder="Search Among Popular Restaurants" value={searchQuery} onChange={handleInputChange} />
+            </div>
+
             <div className={styles.restaurants}>
                 <h1>Popular Restaurants In Pune</h1>
                 <div className={styles.popularResContainer}>
@@ -105,13 +128,12 @@ export default function Body() {
                 </div>
             </div>
 
-            <hr className="separator"/>
-            
+            <hr />
+
             <div className={styles.filters}>
                 <button disabled={true} className={`toggledTopRatedBtn ${topRatedFilterApplied ? 'toggledOn' : 'toggledOff'}`} onClick={filterTopRated}>Top Rated</button>
             </div>
 
-            
         </div>
     );
 }
