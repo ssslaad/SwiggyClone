@@ -42,6 +42,16 @@ h1{
   padding-bottom: 5px;
 }
 
+.searchAndFilter {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  justify-content: flex-start; /* Align items to the start of the container */
+}
+
+.filters{
+  margin:20px;
+}
+
 .filters button {
   padding: 8px 12px;
   background-color: #555;
@@ -69,7 +79,6 @@ h1{
     animation: shimmer 1.5s infinite linear;
 }
 
-
 .toggledOn {
   background-color: #4CAF50;
   /* Green */
@@ -86,23 +95,24 @@ h1{
   background-color: #444;
 }
 
-hr{
-  margin-top: 20px; /* Adds space above the separator */
-    margin-bottom: 20px; /* Optional: Adds space below the separator */
-    width: 100%; /* Makes the separator take up full width of the parent container */
-    border: none; /* You can customize the appearance of the separator if needed */
-    border-top: 2px solid #ccc;
+
+.verticalSeparator {
+  width: 2px; /* Make the separator a thin line */
+  height: 40px; /* Adjust the height to your preference */
+  background-color: #ccc; /* Set color for the separator */
+  box-shadow: 0 3px 6px #f4c998;
 }
 
 /* Search Bar Styles */
 .searchBar {
+  flex:1;
   margin: 20px; /* Ensures the bar is centered */
   display: flex;
   justify-content: center; /* Center the content */
   align-items: center;
   gap: 8px;
   width: 100%; /* Full width to adjust with screen size */
-  max-width: 600px; /* Max width of the search bar */
+  max-width: 400px; /* Max width of the search bar */
 }
 
 .searchBar input {

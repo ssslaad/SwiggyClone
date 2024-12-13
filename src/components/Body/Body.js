@@ -6,7 +6,6 @@ import ShimmerRestaurantCard from "../RestaurantCard/ShimmerRestaurantCard";
 import { SWIGGY_GET_DATA_API } from "../../utils/constants";
 import CuisineCard from "../CuisineCard/CuisineCard";
 import ShimmerCuisineCard from "../CuisineCard/ShimmerCuisineCard";
-import { RestaurantsMockData, CuisinesMockData } from "../../utils/mockData";
 
 export default function Body() {
 
@@ -56,11 +55,11 @@ export default function Body() {
     // Filter the restaurants based on the top-rated filter
     const filterTopRated = () => {
         if (topRatedFilterApplied) {
-            setRestaurants(allRestaurants);
+            setPopularRestaurants(allPopularRestaurants);
             setTopRatedFilterApplied(false);
         } else {
-            const filtered = restaurants.filter(restaurant => restaurant.info.avgRating > 4.3);
-            setRestaurants(filtered); // Update the state with the filtered data
+            const filtered = allPopularRestaurants.filter(restaurant => restaurant.info.avgRating > 4.3);
+            setPopularRestaurants(filtered); // Update the state with the filtered data
             setTopRatedFilterApplied(true);
         }
     };
@@ -72,6 +71,17 @@ export default function Body() {
     if (!dataLoaded) {
         return (
             <div className={styles.body}>
+                
+                <div className={styles.restaurants}>
+                    <h1>Popular Restaurants In Pune</h1>
+                    <div className={styles.popularResContainer}>
+                        {/* Show multiple shimmer restaurant cards */}
+                        {[...Array(5)].map((_, index) => (
+                            <ShimmerRestaurantCard key={index} />
+                        ))}
+                    </div>
+                </div>
+
                 <div className={styles.cuisines}>
                     <h1>Cuisines: What's on your mind ??</h1>
                     <div className={styles.cuisineContainer}>
@@ -82,15 +92,6 @@ export default function Body() {
                     </div>
                 </div>
 
-                <div className={styles.restaurants}>
-                    <h1>Popular Restaurants In Pune</h1>
-                    <div className={styles.popularResContainer}>
-                        {/* Show multiple shimmer restaurant cards */}
-                        {[...Array(5)].map((_, index) => (
-                            <ShimmerRestaurantCard key={index} />
-                        ))}
-                    </div>
-                </div>
             </div>
         );
     }
@@ -98,10 +99,18 @@ export default function Body() {
     return (
         <div className={styles.body}>
 
-            <div className={styles.searchBar}>
-                <input type="text" placeholder="Search Among Popular Restaurants" value={searchQuery} onChange={handleInputChange} />
-            </div>
+            <div className={styles.searchAndFilter}>
+                <div className={styles.searchBar}>
+                    <input type="text" placeholder="Search Among Popular Restaurants" value={searchQuery} onChange={handleInputChange} />
+                </div>
 
+                <div className={styles.verticalSeparator}></div>
+
+                <div className={styles.filters}>
+                    <button className={`toggledTopRatedBtn ${topRatedFilterApplied ? 'toggledOn' : 'toggledOff'}`} onClick={filterTopRated}>Top Rated</button>
+                </div>
+            </div>
+            
             <div className={styles.restaurants}>
                 <h1>Popular Restaurants In Pune</h1>
                 <div className={styles.popularResContainer}>
@@ -126,12 +135,6 @@ export default function Body() {
                     }
                     )}
                 </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.filters}>
-                <button disabled={true} className={`toggledTopRatedBtn ${topRatedFilterApplied ? 'toggledOn' : 'toggledOff'}`} onClick={filterTopRated}>Top Rated</button>
             </div>
 
         </div>
