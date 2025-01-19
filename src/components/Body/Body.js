@@ -49,6 +49,7 @@ export default function Body() {
 
     // will get called when my component is rendered
     useEffect(() => {
+        console.log('use effect called');
         fetchData(SWIGGY_GET_DATA_API);
     }, []);
 
@@ -62,10 +63,6 @@ export default function Body() {
             setPopularRestaurants(filtered); // Update the state with the filtered data
             setTopRatedFilterApplied(true);
         }
-    };
-
-    const searchFromPopularRestaurants = () => {
-
     };
 
     if (!dataLoaded) {
@@ -96,6 +93,18 @@ export default function Body() {
         );
     }
 
+    let content;
+
+    if(popularRestaurants.length === 0){
+        content = <h4>No Popular Restaurant found for your search</h4>
+    }else{
+        content = popularRestaurants.map((restaurant) => {
+            return <RestaurantCard
+                key={restaurant.info.id}
+                restaurantData={restaurant}
+            />
+        });
+    }
     return (
         <div className={styles.body}>
 
@@ -114,13 +123,7 @@ export default function Body() {
             <div className={styles.restaurants}>
                 <h1>Popular Restaurants In Pune</h1>
                 <div className={styles.popularResContainer}>
-                    {popularRestaurants.map((restaurant) => {
-                        return <RestaurantCard
-                            key={restaurant.info.id}
-                            restaurantData={restaurant}
-                        />
-                    }
-                    )}
+                    {content}
                 </div>
             </div>
 
