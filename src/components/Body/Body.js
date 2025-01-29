@@ -116,7 +116,7 @@ export default function Body() {
                 <div className={styles.verticalSeparator}></div>
 
                 <div className={styles.filters}>
-                    <button className={`toggledTopRatedBtn ${topRatedFilterApplied ? 'toggledOn' : 'toggledOff'}`} onClick={filterTopRated}>Top Rated</button>
+                    <button className={topRatedFilterApplied ? styles.toggledOn : ``} onClick={filterTopRated}>Top Rated</button>
                 </div>
             </div>
             

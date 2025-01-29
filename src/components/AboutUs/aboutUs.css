@@ -1,0 +1,22 @@
+.centerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 3% 20%;
+}
+
+.centerContainer h1 {
+    margin-top: 3%;
+    line-height: 1.8;
+}
+
+.centerContainer h2 {
+    margin-top: 2%;
+    font-weight: 400;
+}
+
+.centerContainer h3 {
+    line-height: 1.8;
+}
