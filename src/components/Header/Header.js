@@ -4,6 +4,7 @@ import logo from '../../public/app-logo.jpg';
 import userAccountImage from '../../public/account_image.png';
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 export default function Header() {
 
@@ -83,7 +84,13 @@ export default function Header() {
             <nav className="navbar">
                 <img src={logo} alt="company_logo" />
                 <ul className="nav-items">
-                    <li><a href="#">Home</a></li>
+                    {/* <li><a href="#">Home</a></li> */}
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About Us</Link>
+                    </li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Location</a></li>
                     {loginStatus}
