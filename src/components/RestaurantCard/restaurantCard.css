@@ -76,6 +76,7 @@
 .res-time,
 .res-cost-for-2 {
     font-size: 0.875rem;
+    font-weight: 500;
     display: flex;
     align-items: center;
 }
@@ -83,6 +84,7 @@
 /* Cuisines section */
 .res-cuisines {
     font-size: 0.875rem;
+    font-weight: 500;
     color: #666;
     overflow: hidden;
     text-overflow: ellipsis;
