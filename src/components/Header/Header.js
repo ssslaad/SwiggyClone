@@ -91,8 +91,6 @@ export default function Header() {
                     <li>
                         <Link to="/about">About Us</Link>
                     </li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Location</a></li>
                     {loginStatus}
                 </ul>
             </nav>
