@@ -11,60 +11,97 @@ export default function Body() {
 
     // Initialize state with all restaurants data
     const [popularRestaurants, setPopularRestaurants] = useState([]);
-    const [allPopularRestaurants, setAllPopularRestaurants] = useState([]);
-    const [restaurants, setRestaurants] = useState([]);
-    const [allRestaurants, setAllRestaurants] = useState([]);
+    // const [allPopularRestaurants, setAllPopularRestaurants] = useState([]);
+    // const [restaurants, setRestaurants] = useState([]);
+    // const [allRestaurants, setAllRestaurants] = useState([]);
+    // const [cuisines, setCuisines] = useState([]);
+    // const [dataLoaded, setDataLoaded] = useState(false);
+    // const [topRatedFilterApplied, setTopRatedFilterApplied] = useState(false);
+    // const [lowPricedFilterApplied, setlowPricedFilterApplied] = useState(false);
+    // const [searchQuery, setSearchQuery] = useState('');
+
+    //const [restaurants, setRestaurants] = useState([]);
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [cuisines, setCuisines] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
-    const [topRatedFilterApplied, setTopRatedFilterApplied] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
+    const [filters, setFilters] = useState({
+        topRated: false,
+        lowPriced: false,
+        searchQuery: "",
+    });
 
-    // Handle input change
-    const handleInputChange = (event) => {
-        
-        const query = event.target.value.toLowerCase();
-        setSearchQuery(query);
-        if (searchQuery === undefined || searchQuery === '') {
-            setPopularRestaurants(allPopularRestaurants);
-        } else {
-            const searchedFromPopularRestaurants = allPopularRestaurants.filter(restaurant => restaurant.info.name.toLowerCase().includes(query));
-            setPopularRestaurants(searchedFromPopularRestaurants);
-        }
-    };
 
     const fetchData = async (api) => {
         const fetchedData = await fetch(api);
         const fetchedJson = await fetchedData.json();
-        const restaurantGridList = fetchedJson?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        //const restaurantGridList = fetchedJson?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         const popularRestaurantsList = fetchedJson?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         const cuisineCards = fetchedJson?.data?.cards[0]?.card?.card?.imageGridCards?.info;
 
-        setRestaurants(restaurantGridList);
+        //setRestaurants(restaurantGridList);
+        setFilteredRestaurants(popularRestaurantsList);
         setPopularRestaurants(popularRestaurantsList);
-        setAllPopularRestaurants(popularRestaurantsList);
-        setAllRestaurants(restaurantGridList);
         setCuisines(cuisineCards);
         setDataLoaded(true);
     }
 
     // will get called when my component is rendered
     useEffect(() => {
-        console.log('use effect called');
         fetchData(SWIGGY_GET_DATA_API);
     }, []);
 
+    useEffect(()=>{
+        applyFilters();
+    },[filters]);
+
     // Filter the restaurants based on the top-rated filter
-    const filterTopRated = () => {
-        if (topRatedFilterApplied) {
-            setPopularRestaurants(allPopularRestaurants);
-            setTopRatedFilterApplied(false);
-        } else {
-            const filtered = allPopularRestaurants.filter(restaurant => restaurant.info.avgRating > 4.3);
-            setPopularRestaurants(filtered); // Update the state with the filtered data
-            setTopRatedFilterApplied(true);
-        }
+    const toggleTopRatedFilter = () => {
+        setFilters(prevFilters => ({
+            ...prevFilters,  // Keep existing filter values
+            topRated: !prevFilters.topRated  // Update only searchQuery
+        }));
     };
 
+    // Filter the restaurants based on the top-rated filter
+    const toggleLowPricedFilter = () => {
+        setFilters(prevFilters => ({
+            ...prevFilters,  // Keep existing filter values
+            lowPriced: !prevFilters.lowPriced  // Update only searchQuery
+        }));
+    };
+    
+    // Handle input change
+    const handleInputChange = (event) => {
+        
+        const query = event.target.value.toLowerCase();
+        setFilters(prevFilters => ({
+            ...prevFilters,  // Keep existing filter values
+            searchQuery: query  // Update only searchQuery
+        }));
+    };
+
+    const applyFilters = () => {
+        let filteredRestaurants = [...popularRestaurants];
+        if(filters.topRated){
+            filteredRestaurants = filteredRestaurants.filter(restaurant => restaurant.info.avgRating > 4.3);
+        }
+        if(filters.lowPriced){
+            filteredRestaurants = filteredRestaurants.filter(restaurant => {
+                const strCostForTwo = restaurant.info.costForTwo;
+                return (Number(strCostForTwo.match(/\d+/)[0]) <= 400);
+            });
+        }
+        // Also apply search filter
+        if (filters.searchQuery) {
+            filteredRestaurants = filteredRestaurants.filter(restaurant =>
+                restaurant.info.name.toLowerCase().includes(filters.searchQuery.toLowerCase())
+            );
+        }
+
+        setFilteredRestaurants(filteredRestaurants);
+    }
+
+    // show shimmer UI when data is not loaded 
     if (!dataLoaded) {
         return (
             <div className={styles.body}>
@@ -94,29 +131,32 @@ export default function Body() {
     }
 
     let content;
-
-    if(popularRestaurants.length === 0){
+    if(filteredRestaurants.length === 0){
         content = <h4>No Popular Restaurant found for your search</h4>
     }else{
-        content = popularRestaurants.map((restaurant) => {
+        content = filteredRestaurants.map((restaurant) => {
             return <RestaurantCard
                 key={restaurant.info.id}
                 restaurantData={restaurant}
             />
         });
     }
+
     return (
         <div className={styles.body}>
 
             <div className={styles.searchAndFilter}>
                 <div className={styles.searchBar}>
-                    <input type="text" placeholder="Search Among Popular Restaurants" value={searchQuery} onChange={handleInputChange} />
+                    <input type="text" placeholder="Search Among Popular Restaurants" value={filters.searchQuery} onChange={handleInputChange} />
                 </div>
 
                 <div className={styles.verticalSeparator}></div>
 
                 <div className={styles.filters}>
-                    <button className={topRatedFilterApplied ? styles.toggledOn : ``} onClick={filterTopRated}>Top Rated</button>
+                    <button className={filters.topRated ? styles.toggledOn : ``}
+                     onClick={toggleTopRatedFilter}>Top Rated</button>
+                    <button className={filters.lowPriced ? styles.toggledOn : ``}
+                     onClick={toggleLowPricedFilter}>Low Priced (under 500 Rs)</button>
                 </div>
             </div>
             
