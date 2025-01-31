@@ -4,7 +4,7 @@ import logo from '../../public/app-logo.jpg';
 import userAccountImage from '../../public/account_image.png';
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export default function Header() {
 
