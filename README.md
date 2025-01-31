@@ -329,12 +329,51 @@ State is local to a component instance on the screen. In other words, if you ren
 References: 
 - https://legacy.reactjs.org/docs/reconciliation.html
 
-# Shimmer UI and Loading Indicator
+# Refactoring of code:
+we have removed the multiple states for filters and instead set a single state as filters and will be handling all the filters using this single state variable.
+also, using useEffect we have applied filter (dependency - filters change).
+
+# Shimmer UI and Loading Indicator code (now removed from the code)
  
+```
+// show shimmer UI when data is not loaded 
+    if (!dataLoaded) {
+        return (
+            <div className={styles.body}>
+                
+                <div className={styles.restaurants}>
+                    <h1>Popular Restaurants In Pune</h1>
+                    <div className={styles.popularResContainer}>
+                        {/* Show multiple shimmer restaurant cards */}
+                        {[...Array(5)].map((_, index) => (
+                            <ShimmerRestaurantCard key={index} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className={styles.cuisines}>
+                    <h1>Cuisines: What's on your mind ??</h1>
+                    <div className={styles.cuisineContainer}>
+                        {/* Show multiple shimmer restaurant cards */}
+                        {[...Array(10)].map((_, index) => (
+                            <ShimmerCuisineCard key={index} />
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+        );
+    }
+```
 
 
+# React router
+https://www.youtube.com/watch?v=VJov5QWEKE4&list=PLu71SKxNbfoDqgPchmvIsL4hTnJIrtige&index=13
 
+Here, we have used react router to navigate between different pages (not actually pages but rather components).
+Also, we have used latest Loader feature to load the data quickly and also cached it so that we don't have to call API each time we navigate back to our main component.
 
+#
 
 
 

@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {
-  BrowserRouter,
-  Route,
-  Routes,
+  createBrowserRouter,
+  RouterProvider,
 } from "react-router";
 import "../index.css";
 import Body from "./components/Body/Body";
@@ -12,42 +11,34 @@ import { CLIENT_ID } from "./utils/constants";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Layout from "./Layout";
 import User from "./components/User/User";
+import { restaurantAndCuisineLoader } from "./utils/RestaurantAndCuisineLoader";
 
-// const router = createBrowserRouter([
-//     {
-//       path:"/",
-//       element: <Layout />,
-//       children: [
-//         {
-//           path:"",
-//           element: <Body />,
-//         },
-//         {
-//           path:"/about",
-//           element:<AboutUs />
-//         }
-//       ]
-//     },
-//   ]);
+const router = createBrowserRouter([
+    {
+      path:"/",
+      element: <Layout />,
+      children: [
+        {
+          path:"",
+          element: <Body />,
+          loader: restaurantAndCuisineLoader,
+        },
+        {
+          path:"/about",
+          element:<AboutUs />
+        },
+        {
+          path:"department/:departmentId/user/:userId",
+          element:<User />
+        }
+      ]
+    },
+  ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <GoogleOAuthProvider clientId={CLIENT_ID}>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Layout/>} >
-                  <Route 
-                    index 
-                    element={<Body />}
-                    loader = () =>{
-
-                    } 
-                  />
-                  <Route path="about" element={<AboutUs />} />
-                  <Route path="department/:departmentId/user/:userId" element={<User />} />
-                </Route>
-              </Routes>
-            </BrowserRouter>
+            <RouterProvider router={router}/>
         </GoogleOAuthProvider>
     </React.StrictMode>
 );
