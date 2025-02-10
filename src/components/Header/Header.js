@@ -84,7 +84,6 @@ export default function Header() {
             <nav className="navbar">
                 <img src={logo} alt="company_logo" />
                 <ul className="nav-items">
-                    {/* <li><a href="#">Home</a></li> */}
                     <li>
                         <Link to="/">Home</Link>
                     </li>
