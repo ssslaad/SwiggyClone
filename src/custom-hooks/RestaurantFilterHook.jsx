@@ -51,8 +51,10 @@ export function useRestaurantFilters(initialRestaurants){
         }
         // Also apply search filter
         if (filters.searchQuery) {
-            filteredRestaurants = filteredRestaurants.filter(restaurant =>
-                restaurant.info.name.toLowerCase().includes(filters.searchQuery.toLowerCase())
+            filteredRestaurants = filteredRestaurants.filter( (restaurant) => {
+                return restaurant.info.name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+                restaurant.info.cuisines.findIndex(cuisine => cuisine.toLowerCase().includes(filters.searchQuery.toLowerCase())) !== -1
+            }
             );
         }
 
