@@ -24,7 +24,7 @@ const router = createBrowserRouter([
           loader: restaurantAndCuisineLoader,
         },
         {
-          path:"/about",
+          path:"about",
           element:<AboutUs />
         },
         {

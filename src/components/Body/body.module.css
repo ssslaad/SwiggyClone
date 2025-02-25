@@ -6,10 +6,6 @@
   background-color: white;
 }
 
-h1{
-  font-weight: 800;
-  font-size: 24px;
-}
 
 .cuisineContainer::-webkit-scrollbar, .popularResContainer::-webkit-scrollbar {
   height: 8px;
@@ -18,12 +14,6 @@ h1{
 .cuisineContainer::-webkit-scrollbar-thumb, .popularResContainer::-webkit-scrollbar-thumb {
   background-color: #f4c998;
   border-radius: 10px;
-}
-
-.cuisines,
-.restaurants {
-  margin: 10px;
-  padding: 5px;
 }
 
 .cuisineContainer,
