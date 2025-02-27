@@ -6,7 +6,8 @@ export function SearchAndFilters({
 }) {
   const filterButtonStyle =
     "text-responsive p-2 rounded-full border-2 border-[#ddd] shrink-0 cursor-pointer";
-  const mdSearchAndFilterScroll = `md:overflow-x-auto md:[&::-webkit-scrollbar]:h-1.75 md:[&::-webkit-scrollbar-thumb]:bg-[#f4c998]
+  const mdSearchAndFilterScroll = `md:overflow-x-auto md:[&::-webkit-scrollbar]:h-1.75 md:[&::-webkit-scrollbar]:rounded-full
+   [&::-webkit-scrollbar]:bg-gray-100 md:[&::-webkit-scrollbar-thumb]:bg-[#f4c998]
              md:[&::-webkit-scrollbar-thumb]:rounded-full`;
   const toggledOnStyle = "text-white shadow-[0_3px_6px_#555]";
 
@@ -25,7 +26,7 @@ export function SearchAndFilters({
       </div>
 
       <div
-        className={`flex w-full md:w-6 m-2 pb-2 md:pb-0 gap-x-2 overflow-x-scroll md:overflow-visible [&::-webkit-scrollbar]:h-1.75
+        className={`flex w-full md:w-6 m-2 pb-2 md:pb-0 gap-x-2 overflow-x-scroll md:overflow-visible [&::-webkit-scrollbar]:h-1.75 [&::-webkit-scrollbar]:bg-gray-100
                  [&::-webkit-scrollbar-thumb]:bg-[#f4c998] [&::-webkit-scrollbar-thumb]:rounded-full`}
       >
         <button
@@ -48,6 +49,18 @@ export function SearchAndFilters({
           Low Priced (Under 400 Rs/-)
         </button>
 
+        <button
+          className={`${filterButtonStyle} bg-[#e0e0e0]`}
+          onClick={() => {}}
+        >
+          Filter Holder
+        </button>
+        <button
+          className={`${filterButtonStyle} bg-[#e0e0e0]`}
+          onClick={() => {}}
+        >
+          Filter Holder
+        </button>
         <button
           className={`${filterButtonStyle} bg-[#e0e0e0]`}
           onClick={() => {}}

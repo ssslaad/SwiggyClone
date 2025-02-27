@@ -43,7 +43,7 @@ export default function Body() {
           Popular Restaurants In Pune
         </h1>
         <div
-          className="p-3 flex overflow-x-auto [&::-webkit-scrollbar]:h-1.75 [&::-webkit-scrollbar-thumb]:bg-[#f4c998]
+          className="p-3 flex overflow-x-auto [&::-webkit-scrollbar]:h-1.75 [&::-webkit-scrollbar]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-[#f4c998]
                  [&::-webkit-scrollbar-thumb]:rounded-full w-full gap-x-4"
         >
           {content}
@@ -55,7 +55,7 @@ export default function Body() {
           Cuisines : What's on your mind ??
         </h1>
         <div
-          className="w-full p-3 flex overflow-x-auto [&::-webkit-scrollbar]:h-1.75 [&::-webkit-scrollbar-thumb]:bg-[#f4c998]
+          className="w-full p-3 flex overflow-x-auto [&::-webkit-scrollbar]:h-1.75 [&::-webkit-scrollbar]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-[#f4c998]
                  [&::-webkit-scrollbar-thumb]:rounded-full 
                 gap-x-5 items-center"
         >
